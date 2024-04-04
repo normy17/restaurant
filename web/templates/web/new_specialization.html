@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Добавление специализации для ресторанов</h2>
+    <ul>
+        {% for s in spec %}
+            <li>
+                {{ s.name }}
+            </li>
+        {% endfor %}
+    </ul>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+</body>
+</html>

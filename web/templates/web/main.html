@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Рестораны города</h2>
+    <form>
+        {% for field in filter_form %}
+            {{ field.label }}
+            {{ field }}
+        {% endfor %}
+        <button>Найти</button>
+        <button><a href="{% url 'main' %}">Показать все рестораны</a></button>
+    </form>
+{% for rest in rests %}
+<ul>
+    <li>{{ rest }}, {{ rest.address }}, {{ rest.website }}, {{ rest.phone }},
+    {% for spec in rest.specialization.all %}
+        {{ spec.name }} кухня
+    {% endfor %}
+    </li>
+    <a href="{% url 'rest_edit' rest.id %}">Изменить</a>
+    <a href="{% url 'rest_delete' rest.id %}">Удалить</a>
+</ul>
+{% endfor %}
+<button><a href="{% url 'rest_add' %}">Добавить ресторан</a></button>
+</body>
+</html>
